@@ -1,0 +1,54 @@
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+<script src="twitter-data.js"></script>
+<script src="twitter-code.js"></script>
+<style>
+    body, input, button, th, td {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+        font-size: 14px;
+    }
+    h1 {text-align: center; width:800px}
+    #main {display: flex}
+    #canvas {width: 800px}
+    #sidebar {padding: 20px}
+    #date-words tr > * {
+        text-align: right;
+        padding-right: 10px;
+    }
+    #date-words tr > *:last-child {
+        text-align: left;
+    }
+    #average-window {width: 40px; text-align: right;}
+</style>
+</head>
+<body>
+<h1>AB svenska tweets</h1>
+<div id="main">
+<div id="canvas">
+    <canvas id="chart"></canvas>
+</div>
+<div id="sidebar">
+    <p><label><strong>Kurvutjämning:</strong> &nbsp;
+        ± <input type="number" id="average-window" min="0" max="20" step="1" value="5"/> ‰
+    </label></p>
+    <p><strong>Intervall:</strong> &nbsp;
+        <input type="date" id="range-min"/>—<input type="date" id="range-max"/> 
+        (<span id="range-days"></span> dagar)
+    </p>
+    <p><strong>Zooma:</strong> &nbsp;
+        <button class="zoom-button" value="--">≪</button> <button class="zoom-button" value="-">–</button>
+        <button class="zoom-button" value="+">+</button> <button class="zoom-button" value="++">≫</button>
+    </p>
+    <hr/>
+    <p><strong>Datum:</strong> &nbsp; <span id="selected-date">(klicka i diagrammet)</span></p>
+    <p><strong>Antal tweets:</strong> &nbsp; <span id="date-tweets">(klicka i diagrammet)</span></p>
+    <p><strong>Toxicitet:</strong> &nbsp; <span id="date-toxicity">(klicka i diagrammet)</span></p>
+    <p><table id="date-words"></table></p>
+</div>
+</div>
+</body>
+</html>
